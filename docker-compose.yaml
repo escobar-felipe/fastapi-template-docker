@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  api:
+    restart: always
+    container_name: fastapi-template
+    build:
+      context: ./src/api
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./src/api:/opt/app/
+    networks:
+      - net-host
+networks:
+  net-host:
+    external: true
